@@ -12,7 +12,7 @@ export default function generatePassword(qntd, uppercase, lowercase, numbers, sy
 
   console.log(qntd)
 
-  for (let i = 0; i < qntd; i++) {
+  for (let i = qntd; i > 0; i++) {
     uppercase && password.push(generateUpperCase());
     lowercase && password.push(generateLowerCase());
     numbers && password.push(generateNumbers());
