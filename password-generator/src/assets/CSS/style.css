@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 :root {
-  --primary-color: hsl(160, 56%, 72%);
+  --primary-color: hsl(0, 31%, 53%);
   --primary-color-darker: hsl(160, 25%, 12%);
 }
 
@@ -21,48 +21,15 @@ body {
   margin: 50px auto;
   background: #fff;
   padding: 20px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.3em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
   line-height: 1.5em;
   border-radius: 10px;
 }
 
-form input,
-form label,
-form button {
-  margin-bottom: 10px;
-  display: block;
-  width: 100%;
-}
-
-form input {
-  font-size: 24px;
-  height: 50px;
-  padding: 0 20px;
-}
-
-form input:focus {
-  outline: 1px solid var(--primary-color);
-}
-
-form button {
-  border: none;
-  background: var(--primary-color);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  height: 50px;
-  cursor: pointer;
-  margin-top: 35px;
-}
-
-form button:hover {
-  background: var(--primary-color-darker);
-}
-
-.senha-gerada {
-  font-size: 2em;
-  color: var(--primary-color);
+.password {
+  font-size: 1.5em;
   margin-bottom: 40px;
   margin-top: 40px;
 }
@@ -76,4 +43,8 @@ button {
   display: block;
   margin: 40px 0;
   font-size: 1em;
+}
+
+.password-length {
+  font-size: large;
 }

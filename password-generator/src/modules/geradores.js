@@ -1,23 +1,54 @@
-const rand = (min, max) => Math.floor(Math.random() * (max - min) + min);
-const generateUpperCase = () => String.fromCharCode(rand(65, 91));
-const generateLowerCase = () => String.fromCharCode(rand(97, 123));
-const generateNumbers = () => String.fromCharCode(rand(48, 58));
-const symbols = '!"@#$%^&*()_-+=[]{}:;`/?,<.>';
-const generateSymbols = () => symbols[rand(0, symbols.length)]
-
-export default function generatePassword(qntd, uppercase, lowercase, numbers, symbols) {
+export default function generatePassword(length, uppercase, lowercase, numbers, symbols) {
   const password = [];
+  let pool = "";
 
-  qntd = Number(qntd)
+  const characterSets = {
+    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    lowercase: "abcdefghijklmnopqrstuvwxyz",
+    numbers: "0123456789",
+    symbols: "!'@#$%^&*()_-+=[]{}:;`/?,<.>"
+  };
 
-  console.log(qntd)
-
-  for (let i = 0; i < qntd; i++) {
-    uppercase && password.push(generateUpperCase());
-    lowercase && password.push(generateLowerCase());
-    numbers && password.push(generateNumbers());
-    symbols && password.push(generateSymbols());
+  function getRandomChar(str) {
+    return str.charAt(Math.floor(Math.random() * str.length));
   }
 
-  return password.join('').slice(0, qntd);
+  if (uppercase) {
+    pool += characterSets.uppercase;
+    password.push(getRandomChar(characterSets.uppercase));
+  }
+  if (lowercase) {
+    pool += characterSets.lowercase;
+    password.push(getRandomChar(characterSets.lowercase));
+  }
+  if (numbers) {
+    pool += characterSets.numbers;
+    password.push(getRandomChar(characterSets.numbers));
+  }
+  if (symbols) {
+    pool += characterSets.symbols;
+    password.push(getRandomChar(characterSets.symbols));
+  }
+
+  if (!pool) return "Select at least one option";
+
+  length = Number(length);
+  if (isNaN(length) || length <= 0) {
+    return "Invalid length";
+  }
+
+  if (length < password.length) {
+    return `Length must be at least ${password.length} for selected options`;
+  }
+
+  for (let i = password.length; i < length; i++) {
+    password.push(getRandomChar(pool));
+  }
+
+  for (let i = password.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [password[i], password[j]] = [password[j], password[i]];
+  }
+
+  return password.join('');
 }
